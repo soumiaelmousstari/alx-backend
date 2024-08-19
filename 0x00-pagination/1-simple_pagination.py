@@ -7,6 +7,15 @@ import math
 from typing import List, Tuple
 
 
+def index_range(page: int, page_size: int) -> Tuple[int, int]:
+    """A function return a tuple of size two containing a start
+    index and an end index corresponding to the range of indexes
+    to return in a list for those particular pagination parameters."""
+    s = (page - 1) * page_size
+    f = s + page_size
+    return (s, f)
+
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -27,10 +36,11 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-        pass
-
-    def get_range(page: int, page_size: int) -> Tuple[int, int]:
-        """The function get_range."""
-        s = (page - 1) * page_size
-        f = s + page_size
-        return (s, f)
+        """The function get_page."""
+        assert type(page) == int and type(page_size) == int
+        assert page > 0 and page_size > 0
+        s, f = index_range(page, page_size)
+        d = self.dataset()
+        if s > len(d):
+            return[]
+        return d[s:f]
