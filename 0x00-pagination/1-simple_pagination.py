@@ -32,5 +32,5 @@ class Server:
     def get_range(page: int, page_size: int) -> Tuple[int, int]:
         """The function get_range."""
         s = (page - 1) * page_size
-        f = start + page_size
+        f = s + page_size
         return (s, f)
