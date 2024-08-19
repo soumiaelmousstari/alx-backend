@@ -57,12 +57,12 @@ class Server:
             as an integer"""
         pd = self.get_page(page, page_size)
         s, f = index_range(page, page_size)
-        t = math.ceil(self.__d) / page_size
+        t = math.ceil(len(self.__dataset) / page_size)
         infos = {
                 'page_size': len(pd),
                 'page': page,
                 'data': pd,
-                'next_page': page + 1 if f < len(self.__d) else None,
+                'next_page': page + 1 if f < len(self.__dataset) else None,
                 'prev_page': page - 1 if s > 0 else None,
                 'total_pages': t,
         }
