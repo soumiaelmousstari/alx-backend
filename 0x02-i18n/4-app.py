@@ -22,7 +22,7 @@ def get_locale() -> str:
     """the locale for a web page."""
     queries = request.query_string.decode('utf-8').split('&')
     query_table = dict(map(
-        lambda l: (l if '=' in l else '{}='.format(l)).split('='),
+        lambda x: (x if '=' in x else '{}='.format(x)).split('='),
         queries,
     ))
     if 'locale' in query_table:
